@@ -2,52 +2,62 @@
 
 session_start();
 
-require_once "config/db_connection.php";
+require_once "../config/db_connection.php";
 
-$message = "";
+if (isset($_SESSION["admin_id"])) {
+    header("Location: dashboard.php");
+    exit();
+}
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+$error = "";
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     $email = trim($_POST["email"]);
-    $password = $_POST["password"];
+    $password = trim($_POST["password"]);
 
     if (empty($email) || empty($password)) {
 
-        $message = "Please enter email and password.";
+        $error = "Please enter email and password.";
 
     } else {
 
         $stmt = $conn->prepare(
-            "SELECT id, name, email, password FROM users WHERE email = ?"
+            "SELECT id, name, email, password 
+             FROM admins 
+             WHERE email = ?"
         );
 
         $stmt->bind_param("s", $email);
-
         $stmt->execute();
 
         $result = $stmt->get_result();
 
-        if ($result->num_rows == 1) {
+        if ($result->num_rows === 1) {
 
-            $user = $result->fetch_assoc();
+            $admin = $result->fetch_assoc();
 
-            if (password_verify($password, $user["password"])) {
+            /*
+             * The current admin password in the database
+             * is stored as plain text for this demo project.
+             */
+            if ($password === $admin["password"]) {
 
-                $_SESSION["user_id"] = $user["id"];
-                $_SESSION["user_name"] = $user["name"];
-                $_SESSION["user_email"] = $user["email"];
+                $_SESSION["admin_id"] = $admin["id"];
+                $_SESSION["admin_name"] = $admin["name"];
+                $_SESSION["admin_email"] = $admin["email"];
 
-                header("Location: index.php");
+                header("Location: dashboard.php");
                 exit();
 
             } else {
 
-                $message = "Invalid email or password.";
+                $error = "Invalid email or password.";
             }
 
         } else {
 
-            $message = "Invalid email or password.";
+            $error = "Invalid email or password.";
         }
 
         $stmt->close();
@@ -65,7 +75,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bus Reservation - Login</title>
+    <title>Admin Login - Bus Reservation</title>
 
     <style>
 
@@ -81,81 +91,88 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: #f4f7fb;
         }
 
         .login-container {
             width: 400px;
             background: white;
             padding: 35px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
         }
 
-        h2 {
+        .login-container h1 {
             text-align: center;
             margin-bottom: 10px;
-            color: #333;
+            color: #222;
         }
 
-        .subtitle {
+        .login-container p {
             text-align: center;
             color: #777;
             margin-bottom: 25px;
         }
 
-        label {
-            display: block;
-            margin-bottom: 6px;
-            color: #333;
-            font-weight: bold;
+        .form-group {
+            margin-bottom: 18px;
         }
 
-        input {
+        .form-group label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 18px;
             border: 1px solid #ccc;
             border-radius: 7px;
             font-size: 15px;
         }
 
-        input:focus {
+        .form-group input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #007bff;
         }
 
-        button {
+        .login-btn {
             width: 100%;
             padding: 12px;
             border: none;
             border-radius: 7px;
-            background: #667eea;
+            background: #007bff;
             color: white;
             font-size: 16px;
+            font-weight: bold;
             cursor: pointer;
         }
 
-        button:hover {
-            background: #5568d9;
+        .login-btn:hover {
+            background: #0056b3;
         }
 
-        .message {
-            text-align: center;
+        .error {
+            background: #ffe5e5;
+            color: #d00000;
+            padding: 10px;
+            border-radius: 6px;
             margin-bottom: 18px;
-            color: #d9534f;
-            font-weight: bold;
+            text-align: center;
         }
 
-        .register-link {
+        .back-home {
+            display: block;
             text-align: center;
             margin-top: 20px;
+            text-decoration: none;
+            color: #007bff;
         }
 
-        .register-link a {
-            color: #667eea;
-            text-decoration: none;
-            font-weight: bold;
+        .back-home:hover {
+            text-decoration: underline;
         }
 
     </style>
@@ -166,57 +183,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <div class="login-container">
 
-        <h2>Welcome Back</h2>
+        <h1>Admin Login</h1>
 
-        <p class="subtitle">
-            Login to your Bus Reservation Account
-        </p>
+        <p>Bus Reservation System</p>
 
-        <?php if (!empty($message)): ?>
+        <?php if (!empty($error)): ?>
 
-            <div class="message">
-                <?php echo htmlspecialchars($message); ?>
+            <div class="error">
+                <?php echo htmlspecialchars($error); ?>
             </div>
 
         <?php endif; ?>
 
-        <form method="POST">
+        <form method="POST" action="">
 
-            <label for="email">Email</label>
+            <div class="form-group">
 
-            <input
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-            >
+                <label for="email">Admin Email</label>
 
-            <label for="password">Password</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter admin email"
+                    required
+                >
 
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-            >
+            </div>
 
-            <button type="submit">
+            <div class="form-group">
+
+                <label for="password">Password</label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter admin password"
+                    required
+                >
+
+            </div>
+
+            <button type="submit" class="login-btn">
                 Login
             </button>
 
         </form>
 
-        <div class="register-link">
-
-            Don't have an account?
-
-            <a href="register.php">
-                Create Account
-            </a>
-
-        </div>
+        <a href="../index.php" class="back-home">
+            ← Back to Home
+        </a>
 
     </div>
 

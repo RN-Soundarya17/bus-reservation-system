@@ -2,17 +2,16 @@
 
 session_start();
 
-unset($_SESSION["user_id"]);
-unset($_SESSION["user_name"]);
-unset($_SESSION["user_email"]);
+// Remove all admin session data
+unset($_SESSION["admin_id"]);
+unset($_SESSION["admin_name"]);
+unset($_SESSION["admin_email"]);
 
+// Destroy the session
 session_destroy();
 
-session_start();
-
-$_SESSION["logout_message"] = "Logged out successfully!";
-
-header("Location: index.php");
+// Redirect to admin login
+header("Location: login.php");
 exit();
 
 ?>
