@@ -1,0 +1,732 @@
+/* =========================================
+   BUS RESERVATION SYSTEM - MAIN CSS
+   ========================================= */
+
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f5f7fb;
+    color: #1f2937;
+    line-height: 1.6;
+}
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 16px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar h2 {
+    color: #2563eb;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.navbar a {
+    color: #374151;
+    text-decoration: none;
+    margin-left: 24px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+.navbar a:hover {
+    color: #2563eb;
+}
+
+/* =========================================
+   COMMON CONTAINER
+   ========================================= */
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+.hero {
+    min-height: 520px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8,
+        #1e40af
+    );
+}
+
+.hero-content {
+    width: 100%;
+    max-width: 1100px;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 {
+    font-size: 48px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.hero-content p {
+    font-size: 18px;
+    margin-bottom: 35px;
+    opacity: 0.95;
+}
+
+/* =========================================
+   SEARCH BOX
+   ========================================= */
+
+.search-box {
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    max-width: 1000px;
+    margin: auto;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+}
+
+.search-form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr) auto;
+    gap: 15px;
+    align-items: end;
+}
+
+.form-group {
+    text-align: left;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 600;
+    color: #374151;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    font-size: 15px;
+    outline: none;
+    background: #ffffff;
+    transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.btn {
+    display: inline-block;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 7px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: #1d4ed8;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: #6b7280;
+}
+
+.btn-secondary:hover {
+    background: #4b5563;
+}
+
+.btn-danger {
+    background: #dc2626;
+}
+
+.btn-danger:hover {
+    background: #b91c1c;
+}
+
+.btn-success {
+    background: #16a34a;
+}
+
+.btn-success:hover {
+    background: #15803d;
+}
+
+/* =========================================
+   PAGE TITLE
+   ========================================= */
+
+.page-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.page-title h1 {
+    font-size: 34px;
+    color: #111827;
+    margin-bottom: 8px;
+}
+
+.page-title p {
+    color: #6b7280;
+}
+
+/* =========================================
+   BUS CARDS
+   ========================================= */
+
+.bus-list {
+    display: grid;
+    gap: 20px;
+}
+
+.bus-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+    transition: 0.3s;
+}
+
+.bus-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+}
+
+.bus-card h2 {
+    color: #1d4ed8;
+    margin-bottom: 8px;
+}
+
+.bus-info {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.bus-info div {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 7px;
+}
+
+.bus-info strong {
+    display: block;
+    color: #111827;
+}
+
+.bus-info span {
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* =========================================
+   LOGIN / REGISTER
+   ========================================= */
+
+.auth-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.auth-box {
+    width: 100%;
+    max-width: 450px;
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.10);
+}
+
+.auth-box h1 {
+    text-align: center;
+    margin-bottom: 10px;
+    color: #1d4ed8;
+}
+
+.auth-box p {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 25px;
+}
+
+.auth-box .form-group {
+    margin-bottom: 18px;
+}
+
+.auth-box .btn {
+    width: 100%;
+    margin-top: 8px;
+}
+
+.auth-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.auth-link a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* =========================================
+   ALERT MESSAGES
+   ========================================= */
+
+.alert {
+    padding: 14px 18px;
+    border-radius: 7px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.alert-success {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.alert-error {
+    background: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fecaca;
+}
+
+.alert-info {
+    background: #dbeafe;
+    color: #1e40af;
+    border: 1px solid #bfdbfe;
+}
+
+/* =========================================
+   SEAT SELECTION
+   ========================================= */
+
+.seat-container {
+    max-width: 700px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.seat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 30px auto;
+    max-width: 420px;
+}
+
+.seat {
+    padding: 15px 5px;
+    border-radius: 7px;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+}
+
+.seat.available {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.seat.available:hover {
+    background: #bbf7d0;
+}
+
+.seat.booked {
+    background: #fecaca;
+    color: #991b1b;
+    cursor: not-allowed;
+}
+
+.seat.selected {
+    background: #2563eb;
+    color: white;
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 25px 0;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend-box {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+/* =========================================
+   BOOKING / TICKET
+   ========================================= */
+
+.booking-box,
+.ticket {
+    max-width: 800px;
+    margin: 40px auto;
+    background: white;
+    padding: 35px;
+    border-radius: 14px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.ticket-header {
+    text-align: center;
+    border-bottom: 2px dashed #d1d5db;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+}
+
+.ticket-header h1 {
+    color: #2563eb;
+}
+
+.ticket-details {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.ticket-detail {
+    padding: 14px;
+    background: #f8fafc;
+    border-radius: 7px;
+}
+
+.ticket-detail strong {
+    display: block;
+    color: #374151;
+}
+
+.ticket-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* =========================================
+   BOOKINGS TABLE
+   ========================================= */
+
+.table-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 750px;
+}
+
+th,
+td {
+    padding: 13px 12px;
+    text-align: left;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+th {
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 600;
+}
+
+tr:hover {
+    background: #f9fafb;
+}
+
+/* =========================================
+   STATUS
+   ========================================= */
+
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.status-confirmed {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-cancelled {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================================
+   ADMIN DASHBOARD
+   ========================================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 35px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.06);
+}
+
+.dashboard-card h3 {
+    color: #6b7280;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.dashboard-card .number {
+    font-size: 32px;
+    font-weight: 700;
+    color: #2563eb;
+}
+
+.admin-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.admin-action {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    text-decoration: none;
+    color: #111827;
+    transition: 0.3s;
+}
+
+.admin-action:hover {
+    border-color: #2563eb;
+    transform: translateY(-3px);
+}
+
+.admin-action h3 {
+    color: #2563eb;
+    margin-bottom: 8px;
+}
+
+.admin-action p {
+    color: #6b7280;
+}
+
+/* =========================================
+   EMPTY STATE
+   ========================================= */
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    background: white;
+    border-radius: 12px;
+    color: #6b7280;
+}
+
+/* =========================================
+   FOOTER
+   ========================================= */
+
+.footer {
+    background: #111827;
+    color: #d1d5db;
+    text-align: center;
+    padding: 25px;
+    margin-top: 60px;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 900px) {
+
+    .search-form {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .bus-info {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .hero-content h1 {
+        font-size: 38px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .navbar {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .navbar h2 {
+        font-size: 20px;
+    }
+
+    .navbar a {
+        margin: 0 8px;
+        font-size: 14px;
+    }
+
+    .hero {
+        min-height: 600px;
+        padding: 40px 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 30px;
+    }
+
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    .search-box {
+        padding: 20px;
+    }
+
+    .search-form {
+        grid-template-columns: 1fr;
+    }
+
+    .bus-info {
+        grid-template-columns: 1fr;
+    }
+
+    .ticket-details {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-box {
+        padding: 25px;
+    }
+
+    .container {
+        width: 94%;
+    }
+}
+
+/* =========================================
+   PRINT TICKET
+   ========================================= */
+
+@media print {
+
+    .navbar,
+    .ticket-actions,
+    .footer {
+        display: none !important;
+    }
+
+    body {
+        background: white;
+    }
+
+    .ticket {
+        box-shadow: none;
+        border: 1px solid #ddd;
+        margin: 0;
+        max-width: 100%;
+    }
+}
